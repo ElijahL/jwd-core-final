@@ -35,6 +35,14 @@ public class CrewMember extends AbstractBaseEntity {
         return isReadyForNextMissions;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
     public void setReadyForNextMissions(boolean isReadyForNextMissions){
         this.isReadyForNextMissions = isReadyForNextMissions;
     }

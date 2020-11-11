@@ -50,8 +50,19 @@ public enum CrewServiceImpl implements CrewService {
     }
 
     @Override
-    public CrewMember updateCrewMemberDetails(CrewMember crewMember) throws ServiceException {
-        return null;
+    public CrewMember updateCrewMemberDetails(CrewMemberCriteria findByThis, CrewMember updateLikeThat) throws ServiceException {
+        Optional<CrewMember> optionalCrewMember = findCrewMemberByCriteria(findByThis);
+        CrewMember crewMember;
+        if(optionalCrewMember.isPresent()){
+            crewMember = optionalCrewMember.get();
+            crewMember.setName(updateLikeThat.getName());
+            crewMember.setRank(updateLikeThat.getRank());
+            crewMember.setRole(updateLikeThat.getRole());
+            crewMember.setReadyForNextMissions(updateLikeThat.getReadyForNextMissions());
+        } else {
+            throw new ServiceException("Cant find a CrewMember with given parameters.");
+        }
+        return crewMember;
     }
 
     @Override

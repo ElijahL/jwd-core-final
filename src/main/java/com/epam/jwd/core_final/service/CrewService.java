@@ -1,5 +1,6 @@
 package com.epam.jwd.core_final.service;
 
+import com.epam.jwd.core_final.criteria.CrewMemberCriteria;
 import com.epam.jwd.core_final.criteria.Criteria;
 import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.Rank;
@@ -22,7 +23,7 @@ public interface CrewService {
 
     Optional<CrewMember> findCrewMemberByCriteria(Criteria<CrewMember> criteria);
 
-    CrewMember updateCrewMemberDetails(CrewMember crewMember) throws ServiceException;
+    CrewMember updateCrewMemberDetails(CrewMemberCriteria findByThis, CrewMember updateLikeThat) throws ServiceException;
 
     // todo create custom exception for case, when crewMember is not able to be assigned
     void assignCrewMemberOnMission(CrewMember crewMember) throws ServiceException;

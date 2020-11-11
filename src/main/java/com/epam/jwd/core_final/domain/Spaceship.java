@@ -34,6 +34,14 @@ public class Spaceship extends AbstractBaseEntity {
         return isReadyForNextMissions;
     }
 
+    public void setCrew(Map<Role, Short> crew) {
+        this.crew = crew;
+    }
+
+    public void setFlightDistance(Long flightDistance) {
+        this.flightDistance = flightDistance;
+    }
+
     public void setReadyForNextMissions(Boolean readiness) {
         isReadyForNextMissions = readiness;
     }

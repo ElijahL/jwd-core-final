@@ -50,8 +50,19 @@ public enum SpaceshipServiceImpl implements SpaceshipService {
 
     // todo: And for the rest implementations too
     @Override
-    public Spaceship updateSpaceshipDetails(Spaceship spaceship) {
-        return null;
+    public Spaceship updateSpaceshipDetails(SpaceshipCriteria findByThis, Spaceship updateLikeThat) {
+        Optional<Spaceship> optionalSpaceship = findSpaceshipByCriteria(findByThis);
+        Spaceship spaceship;
+        if(optionalSpaceship.isPresent()){
+            spaceship = optionalSpaceship.get();
+            spaceship.setName(updateLikeThat.getName());
+            spaceship.setFlightDistance(updateLikeThat.getFlightDistance());
+            spaceship.setCrew(updateLikeThat.getCrew());
+            spaceship.setReadyForNextMissions(updateLikeThat.getReadyForNextMissions());
+        } else {
+            throw new ServiceException("Cannot find mission with given parameters.");
+        }
+        return spaceship;
     }
 
     @Override

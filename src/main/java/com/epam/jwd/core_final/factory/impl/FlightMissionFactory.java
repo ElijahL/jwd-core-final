@@ -11,10 +11,7 @@ import com.epam.jwd.core_final.service.impl.MissionServiceImpl;
 import com.epam.jwd.core_final.service.impl.SpaceshipServiceImpl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public enum FlightMissionFactory implements EntityFactory<FlightMission>{
     INSTANCE;
@@ -30,7 +27,7 @@ public enum FlightMissionFactory implements EntityFactory<FlightMission>{
                     (Long) args[3],
                     spaceship,
                     crewMembers,
-                    MissionResult.PLANNED);
+                    getRandomMissionResult());
         } else {
             throw new InvalidArgsException("Invalid arguments when trying create FlightMission.");
         }
@@ -62,5 +59,11 @@ public enum FlightMissionFactory implements EntityFactory<FlightMission>{
                 && args[1] instanceof LocalDateTime
                 && args[2] instanceof LocalDateTime
                 && args[3] instanceof Long;
+    }
+
+    private MissionResult getRandomMissionResult(){
+        List<MissionResult> values =
+                (List<MissionResult>) Collections.unmodifiableList(Arrays.asList(MissionResult.values()));
+        return values.get(new Random().nextInt(values.size()));
     }
 }

@@ -7,9 +7,11 @@ import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.domain.MissionResult;
 import com.epam.jwd.core_final.domain.Spaceship;
+import com.epam.jwd.core_final.exception.ServiceException;
 import com.epam.jwd.core_final.factory.impl.FlightMissionFactory;
 import com.epam.jwd.core_final.service.MissionService;
 
+import javax.xml.ws.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +40,22 @@ public enum MissionServiceImpl implements MissionService {
     }
 
     @Override
-    public FlightMission updateMissionDetails(FlightMission flightMission) {
-        return null;
+    public FlightMission updateMissionDetails(FlightMissionCriteria findByThis, FlightMission updateLikeThat) throws ServiceException {
+        Optional<FlightMission> optionalFlightMission = findMissionByCriteria(findByThis);
+        FlightMission flightMission;
+        if(optionalFlightMission.isPresent()){
+            flightMission = optionalFlightMission.get();
+            flightMission.setName(updateLikeThat.getName());
+            flightMission.setStartDate(updateLikeThat.getStartDate());
+            flightMission.setEndDate(updateLikeThat.getEndDate());
+            flightMission.setDistance(updateLikeThat.getDistance());
+            flightMission.setAssignedSpaceShift(updateLikeThat.getAssignedSpaceShift());
+            flightMission.setAssignedCrew(updateLikeThat.getAssignedCrew());
+            flightMission.setMissionResult(updateLikeThat.getMissionResult());
+        } else {
+            throw new ServiceException("Cannot find mission with given parameters.");
+        }
+        return flightMission;
     }
 
     @Override

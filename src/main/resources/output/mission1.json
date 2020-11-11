@@ -2,32 +2,32 @@
   "id" : 1,
   "name" : "Mars",
   "startDate" : {
-    "nano" : 0,
-    "dayOfWeek" : "SUNDAY",
-    "dayOfYear" : 148,
     "year" : 3015,
-    "second" : 0,
     "monthValue" : 5,
-    "hour" : 21,
-    "minute" : 0,
     "month" : "MAY",
     "dayOfMonth" : 28,
+    "dayOfYear" : 148,
+    "dayOfWeek" : "SUNDAY",
+    "hour" : 21,
+    "minute" : 0,
+    "second" : 0,
+    "nano" : 0,
     "chronology" : {
       "id" : "ISO",
       "calendarType" : "iso8601"
     }
   },
   "endDate" : {
-    "nano" : 0,
-    "dayOfWeek" : "WEDNESDAY",
-    "dayOfYear" : 179,
     "year" : 3015,
-    "second" : 0,
     "monthValue" : 6,
-    "hour" : 19,
-    "minute" : 0,
     "month" : "JUNE",
     "dayOfMonth" : 28,
+    "dayOfYear" : 179,
+    "dayOfWeek" : "WEDNESDAY",
+    "hour" : 19,
+    "minute" : 0,
+    "second" : 0,
+    "nano" : 0,
     "chronology" : {
       "id" : "ISO",
       "calendarType" : "iso8601"
@@ -167,5 +167,5 @@
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   } ],
-  "missionResult" : "PLANNED"
+  "missionResult" : "FAILED"
 }

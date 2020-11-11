@@ -13,6 +13,7 @@ import com.epam.jwd.core_final.strategy.impl.SpaceshipsFileReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.FileHandler;
@@ -29,6 +30,9 @@ public class NassaContext implements ApplicationContext {
     private Collection<FlightMission> flightMissions = new ArrayList<>();
     private DateTimeFormatter formatter;
     private static Logger logger;
+    private int refreshRate;
+    private LocalDateTime initializationTime;
+    private ApplicationProperties properties;
 
     public static NassaContext getInstance(){
         if(instance == null){
@@ -43,6 +47,18 @@ public class NassaContext implements ApplicationContext {
 
     public Logger getLogger(){
         return logger;
+    }
+
+    public int getRefreshRate() {
+        return refreshRate;
+    }
+
+    public LocalDateTime getInitializationTime() {
+        return initializationTime;
+    }
+
+    public ApplicationProperties getProperties() {
+        return properties;
     }
 
     @Override
@@ -64,6 +80,8 @@ public class NassaContext implements ApplicationContext {
      */
     @Override
     public void init(ApplicationProperties properties) throws InvalidStateException {
+        this.properties = properties;
+        initializationTime = LocalDateTime.now();
         formatter = DateTimeFormatter.ofPattern(properties.getDateTimeFormat());
         logger = Logger.getLogger(NassaContext.class.getName());
         FileHandler handler;
@@ -72,9 +90,9 @@ public class NassaContext implements ApplicationContext {
         } catch (IOException ex){
             throw new InvalidArgsException(ex.getMessage());
         }
-        logger.addHandler(handler);
         handler.setFormatter(new SimpleFormatter());
-
+        logger.addHandler(handler);
+        refreshRate = properties.getFileRefreshRate();
         Reader reader = new Reader();
         try {
             reader.setReader(new CrewFileReader());

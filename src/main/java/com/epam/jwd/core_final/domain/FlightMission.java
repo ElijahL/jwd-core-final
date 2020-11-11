@@ -50,6 +50,34 @@ public class FlightMission extends AbstractBaseEntity {
         this.missionResult = missionResult;
     }
 
+    public static void setFlightMissionIdCounter(Long flightMissionIdCounter) {
+        FlightMission.flightMissionIdCounter = flightMissionIdCounter;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDistance(Long distance) {
+        this.distance = distance;
+    }
+
+    public void setAssignedSpaceShift(Spaceship assignedSpaceShift) {
+        this.assignedSpaceShift = assignedSpaceShift;
+    }
+
+    public void setAssignedCrew(List<CrewMember> assignedCrew) {
+        this.assignedCrew = assignedCrew;
+    }
+
+    public void setMissionResult(MissionResult missionResult) {
+        this.missionResult = missionResult;
+    }
+
     public LocalDateTime getStartDate() {
         return startDate;
     }

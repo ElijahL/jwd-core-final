@@ -2,32 +2,32 @@
   "id" : 0,
   "name" : "Moon",
   "startDate" : {
-    "nano" : 0,
-    "dayOfWeek" : "THURSDAY",
-    "dayOfYear" : 315,
     "year" : 3030,
-    "second" : 11,
     "monthValue" : 11,
-    "hour" : 11,
-    "minute" : 11,
     "month" : "NOVEMBER",
     "dayOfMonth" : 11,
+    "dayOfYear" : 315,
+    "dayOfWeek" : "THURSDAY",
+    "hour" : 11,
+    "minute" : 11,
+    "second" : 11,
+    "nano" : 0,
     "chronology" : {
       "id" : "ISO",
       "calendarType" : "iso8601"
     }
   },
   "endDate" : {
-    "nano" : 0,
-    "dayOfWeek" : "THURSDAY",
-    "dayOfYear" : 315,
     "year" : 3030,
-    "second" : 22,
     "monthValue" : 11,
-    "hour" : 13,
-    "minute" : 42,
     "month" : "NOVEMBER",
     "dayOfMonth" : 11,
+    "dayOfYear" : 315,
+    "dayOfWeek" : "THURSDAY",
+    "hour" : 13,
+    "minute" : 42,
+    "second" : 22,
+    "nano" : 0,
     "chronology" : {
       "id" : "ISO",
       "calendarType" : "iso8601"
@@ -167,5 +167,5 @@
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   } ],
-  "missionResult" : "PLANNED"
+  "missionResult" : "IN_PROGRESS"
 }

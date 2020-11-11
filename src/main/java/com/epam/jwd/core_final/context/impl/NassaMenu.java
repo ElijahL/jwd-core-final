@@ -42,6 +42,10 @@ public enum NassaMenu implements ApplicationMenu {
 
     @Override
     public void printAvailableOptions() {
+        if(LocalDateTime.now().getMinute() - NassaContext.getInstance().getInitializationTime().getMinute()
+                >= NassaContext.getInstance().getRefreshRate()){
+            NassaContext.getInstance().init(NassaContext.getInstance().getProperties());
+        }
         System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                 "0. Exit\n" +
                 "1. Create new mission\n" +
@@ -50,7 +54,8 @@ public enum NassaMenu implements ApplicationMenu {
                 "4. Print all missions\n" +
                 "5. Find Crew Member by Name\n" +
                 "6. Find Spaceship by Name\n" +
-                "7. Create JSON of mission and put in a file\n");
+                "7. Create JSON of mission and put in a file\n" +
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
     @Override
@@ -196,5 +201,9 @@ public enum NassaMenu implements ApplicationMenu {
             Logger logger = NassaContext.getInstance().getLogger();
             logger.info("Util JSON is created");
         }
+    }
+
+    private void reinitialization(){
+
     }
 }

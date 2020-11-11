@@ -1,6 +1,7 @@
 package com.epam.jwd.core_final.service;
 
 import com.epam.jwd.core_final.criteria.Criteria;
+import com.epam.jwd.core_final.criteria.SpaceshipCriteria;
 import com.epam.jwd.core_final.domain.Role;
 import com.epam.jwd.core_final.domain.Spaceship;
 import com.epam.jwd.core_final.exception.DuplicateObjectException;
@@ -21,7 +22,7 @@ public interface SpaceshipService {
 
     Optional<Spaceship> findSpaceshipByCriteria(Criteria<? extends Spaceship> criteria);
 
-    Spaceship updateSpaceshipDetails(Spaceship spaceship);
+    Spaceship updateSpaceshipDetails(SpaceshipCriteria criteria, Spaceship spaceship);
 
     // todo create custom exception for case, when spaceship is not able to be assigned
     void assignSpaceshipOnMission(Spaceship crewMember) throws RuntimeException;
