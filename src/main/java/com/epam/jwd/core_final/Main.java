@@ -1,10 +1,20 @@
 package com.epam.jwd.core_final;
 
 import com.epam.jwd.core_final.context.Application;
+import com.epam.jwd.core_final.context.impl.NassaContext;
+import com.epam.jwd.core_final.exception.InvalidStateException;
+
+import java.util.logging.Logger;
 
 public class Main {
+    static Logger logger;
 
     public static void main(String[] args) {
-        Application.start();
+        try {
+            Application.start();
+            logger = NassaContext.getInstance().getLogger();
+        } catch (InvalidStateException ex){
+            logger.info(ex.getMessage());
+        }
     }
 }

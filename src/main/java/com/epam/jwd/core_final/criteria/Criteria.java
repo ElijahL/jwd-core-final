@@ -7,4 +7,7 @@ import com.epam.jwd.core_final.domain.BaseEntity;
  */
 public abstract class Criteria<T extends BaseEntity> {
 
+    abstract public boolean matches(T obj);
+
+    abstract public T build();
 }

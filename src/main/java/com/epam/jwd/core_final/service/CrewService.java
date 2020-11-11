@@ -2,6 +2,10 @@ package com.epam.jwd.core_final.service;
 
 import com.epam.jwd.core_final.criteria.Criteria;
 import com.epam.jwd.core_final.domain.CrewMember;
+import com.epam.jwd.core_final.domain.Rank;
+import com.epam.jwd.core_final.domain.Role;
+import com.epam.jwd.core_final.exception.DuplicateObjectException;
+import com.epam.jwd.core_final.exception.ServiceException;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,16 +18,16 @@ public interface CrewService {
 
     List<CrewMember> findAllCrewMembers();
 
-    List<CrewMember> findAllCrewMembersByCriteria(Criteria<? extends CrewMember> criteria);
+    List<CrewMember> findAllCrewMembersByCriteria(Criteria<CrewMember> criteria);
 
-    Optional<CrewMember> findCrewMemberByCriteria(Criteria<? extends CrewMember> criteria);
+    Optional<CrewMember> findCrewMemberByCriteria(Criteria<CrewMember> criteria);
 
-    CrewMember updateCrewMemberDetails(CrewMember crewMember);
+    CrewMember updateCrewMemberDetails(CrewMember crewMember) throws ServiceException;
 
     // todo create custom exception for case, when crewMember is not able to be assigned
-    void assignCrewMemberOnMission(CrewMember crewMember) throws RuntimeException;
+    void assignCrewMemberOnMission(CrewMember crewMember) throws ServiceException;
 
-    // todo create custom exception for case, when crewMember is not able to be created (for example - duplicate.
+    // todo create custom exception for case, when crewMember is not able to be created (for example - duplicate).
     // crewmember unique criteria - only name!
-    CrewMember createCrewMember(CrewMember spaceship) throws RuntimeException;
+    CrewMember createCrewMember(Role role, String name, Rank rank) throws ServiceException, DuplicateObjectException;
 }
