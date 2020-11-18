@@ -4,6 +4,7 @@ import com.epam.jwd.core_final.context.Application;
 import com.epam.jwd.core_final.context.impl.NassaContext;
 import com.epam.jwd.core_final.exception.InvalidStateException;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
             Application.start();
             logger = NassaContext.getInstance().getLogger();
         } catch (InvalidStateException ex){
-            logger.info(ex.getMessage());
+            logger.log(Level.WARNING, ex.getMessage());
         }
     }
 }

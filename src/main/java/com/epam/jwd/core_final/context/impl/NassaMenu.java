@@ -16,14 +16,10 @@ import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.slf4j.LoggerFactory;
 
 public enum NassaMenu implements ApplicationMenu {
     INSTANCE;

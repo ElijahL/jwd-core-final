@@ -167,5 +167,5 @@
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   } ],
-  "missionResult" : "FAILED"
+  "missionResult" : "CANCELLED"
 }

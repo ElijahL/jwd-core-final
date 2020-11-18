@@ -12,9 +12,9 @@ import java.util.Map;
  * Should be a builder for {@link com.epam.jwd.core_final.domain.CrewMember} fields
  */
 public class CrewMemberCriteria extends Criteria<CrewMember> {
-    private String name = null;
-    private Role role = null;
-    private Rank rank = null;
+    private String name;
+    private Role role;
+    private Rank rank;
     private Boolean isReadyForNextMissions = null;
 
     private Map<String, Boolean> fieldsExistence = new HashMap<String, Boolean>(){{
