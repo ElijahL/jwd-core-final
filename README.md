@@ -1,5 +1,5 @@
-#JWD Final Java core task
-##Requirements 
+# JWD Final Java core task
+## Requirements 
 * Fork this [git repository](https://github.com/Rement/jwd-core-final)
 * You should not remove MY comments
 * You have to follow [Java code conventions](https://www.oracle.com/java/technologies/javase/codeconventions-contents.html) ! 
@@ -10,7 +10,7 @@
 * Console input should be done using java.util.Scanner
 * Input files contains structure description, starts with hash
 
-###Mandatory tasks: 
+### Mandatory tasks: 
 * In domain package update entity based on requirements
 * Implements service interfaces
 * Extend missed criteria implementations
@@ -22,7 +22,7 @@ Able to write information about selected mission(s) in output file in json forma
 
 
 
-###Additional tasks:
+### Additional tasks:
 * Create tests using Junit, Mockito for your functionality
 * Implement additional option in a menu (for mission) with real-time flight-status
 * Discuss with mentor any improvements, you want to implement 
