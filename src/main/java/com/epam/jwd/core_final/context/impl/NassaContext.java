@@ -13,8 +13,6 @@ import com.epam.jwd.core_final.strategy.impl.SpaceshipsFileReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.logging.FileHandler;
@@ -84,16 +82,12 @@ public class NassaContext implements ApplicationContext {
         this.properties = properties;
         initializationTime = LocalDateTime.now();
         format = properties.getDateTimeFormat();
-        logger = Logger.getLogger(NassaContext.class.getName());
-        FileHandler handler;
-        try {
-            handler = new FileHandler("src/main/resources/myLogs.log");
-        } catch (IOException ex){
-            throw new InvalidArgsException(ex.getMessage());
-        }
-        handler.setFormatter(new SimpleFormatter());
-        logger.addHandler(handler);
         refreshRate = properties.getFileRefreshRate();
+        setLogger();
+        readDataFromFiles(properties);
+    }
+
+    private void readDataFromFiles(ApplicationProperties properties) throws InvalidStateException{
         Reader reader = new Reader();
         try {
             reader.setReader(new CrewFileReader());
@@ -107,5 +101,17 @@ public class NassaContext implements ApplicationContext {
         } catch (DuplicateObjectException | FileNotFoundException | InvalidArgsException ex){
             throw new InvalidStateException(ex.getMessage());
         }
+    }
+
+    private void setLogger() throws InvalidStateException {
+        logger = Logger.getLogger(NassaContext.class.getName());
+        FileHandler handler;
+        try {
+            handler = new FileHandler("src/main/resources/myLogs.log");
+        } catch (IOException ex){
+            throw new InvalidArgsException(ex.getMessage());
+        }
+        handler.setFormatter(new SimpleFormatter());
+        logger.addHandler(handler);
     }
 }
