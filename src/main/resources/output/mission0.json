@@ -38,15 +38,63 @@
     "id" : 0,
     "name" : "Challenger",
     "crew" : {
-      "FLIGHT_ENGINEER" : 9,
+      "MISSION_SPECIALIST" : 5,
       "COMMANDER" : 3,
-      "PILOT" : 3,
-      "MISSION_SPECIALIST" : 5
+      "FLIGHT_ENGINEER" : 9,
+      "PILOT" : 3
     },
     "flightDistance" : 201117,
     "readyForNextMissions" : false
   },
   "assignedCrew" : [ {
+    "id" : 1,
+    "name" : "Zoe Day",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "TRAINEE",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 6,
+    "name" : "Isabelle Person",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "SECOND_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 14,
+    "name" : "Azra Hastings",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "FIRST_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 16,
+    "name" : "Aronas Paul",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "FIRST_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 17,
+    "name" : "Alanah Stanton",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "FIRST_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 0,
+    "name" : "Davey Bentley",
+    "role" : "COMMANDER",
+    "rank" : "SECOND_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 7,
+    "name" : "Sara Barnes",
+    "role" : "COMMANDER",
+    "rank" : "FIRST_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 12,
+    "name" : "Adele Mckeown",
+    "role" : "COMMANDER",
+    "rank" : "SECOND_OFFICER",
+    "readyForNextMissions" : false
+  }, {
     "id" : 4,
     "name" : "Frazer Carr",
     "role" : "FLIGHT_ENGINEER",
@@ -101,24 +149,6 @@
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   }, {
-    "id" : 0,
-    "name" : "Davey Bentley",
-    "role" : "COMMANDER",
-    "rank" : "SECOND_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 7,
-    "name" : "Sara Barnes",
-    "role" : "COMMANDER",
-    "rank" : "FIRST_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 12,
-    "name" : "Adele Mckeown",
-    "role" : "COMMANDER",
-    "rank" : "SECOND_OFFICER",
-    "readyForNextMissions" : false
-  }, {
     "id" : 2,
     "name" : "Petra Potter",
     "role" : "PILOT",
@@ -135,36 +165,6 @@
     "name" : "Reya Handley",
     "role" : "PILOT",
     "rank" : "SECOND_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 1,
-    "name" : "Zoe Day",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "TRAINEE",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 6,
-    "name" : "Isabelle Person",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "SECOND_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 14,
-    "name" : "Azra Hastings",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "FIRST_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 16,
-    "name" : "Aronas Paul",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "FIRST_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 17,
-    "name" : "Alanah Stanton",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   } ],
   "missionResult" : "CANCELLED"

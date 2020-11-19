@@ -38,15 +38,63 @@
     "id" : 1,
     "name" : "Intelligence",
     "crew" : {
-      "FLIGHT_ENGINEER" : 8,
+      "MISSION_SPECIALIST" : 7,
       "COMMANDER" : 1,
-      "PILOT" : 4,
-      "MISSION_SPECIALIST" : 7
+      "FLIGHT_ENGINEER" : 8,
+      "PILOT" : 4
     },
     "flightDistance" : 758717,
     "readyForNextMissions" : false
   },
   "assignedCrew" : [ {
+    "id" : 20,
+    "name" : "Cobie Coles",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "CAPTAIN",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 24,
+    "name" : "Melisa Villalobos",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "TRAINEE",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 34,
+    "name" : "Kiran Burns",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "SECOND_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 38,
+    "name" : "Beatrix Mcdonald",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "TRAINEE",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 39,
+    "name" : "Karan Avalos",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "TRAINEE",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 51,
+    "name" : "Stefania Redmond",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "CAPTAIN",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 56,
+    "name" : "Jozef Braun",
+    "role" : "MISSION_SPECIALIST",
+    "rank" : "FIRST_OFFICER",
+    "readyForNextMissions" : false
+  }, {
+    "id" : 18,
+    "name" : "Darien Blanchard",
+    "role" : "COMMANDER",
+    "rank" : "TRAINEE",
+    "readyForNextMissions" : false
+  }, {
     "id" : 37,
     "name" : "Alfie Sosa",
     "role" : "FLIGHT_ENGINEER",
@@ -95,12 +143,6 @@
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
   }, {
-    "id" : 18,
-    "name" : "Darien Blanchard",
-    "role" : "COMMANDER",
-    "rank" : "TRAINEE",
-    "readyForNextMissions" : false
-  }, {
     "id" : 8,
     "name" : "Bilaal Reid",
     "role" : "PILOT",
@@ -124,48 +166,6 @@
     "role" : "PILOT",
     "rank" : "FIRST_OFFICER",
     "readyForNextMissions" : false
-  }, {
-    "id" : 20,
-    "name" : "Cobie Coles",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "CAPTAIN",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 24,
-    "name" : "Melisa Villalobos",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "TRAINEE",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 34,
-    "name" : "Kiran Burns",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "SECOND_OFFICER",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 38,
-    "name" : "Beatrix Mcdonald",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "TRAINEE",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 39,
-    "name" : "Karan Avalos",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "TRAINEE",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 51,
-    "name" : "Stefania Redmond",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "CAPTAIN",
-    "readyForNextMissions" : false
-  }, {
-    "id" : 56,
-    "name" : "Jozef Braun",
-    "role" : "MISSION_SPECIALIST",
-    "rank" : "FIRST_OFFICER",
-    "readyForNextMissions" : false
   } ],
-  "missionResult" : "CANCELLED"
+  "missionResult" : "COMPLETED"
 }

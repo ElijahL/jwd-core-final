@@ -13,8 +13,9 @@ import com.epam.jwd.core_final.strategy.impl.SpaceshipsFileReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ public class NassaContext implements ApplicationContext {
     private Collection<CrewMember> crewMembers = new ArrayList<>();
     private Collection<Spaceship> spaceships = new ArrayList<>();
     private Collection<FlightMission> flightMissions = new ArrayList<>();
-    private DateTimeFormatter formatter;
+    private String format;
     private static Logger logger;
     private int refreshRate;
     private LocalDateTime initializationTime;
@@ -41,8 +42,8 @@ public class NassaContext implements ApplicationContext {
         return instance;
     }
 
-    public DateTimeFormatter getFormatter(){
-        return formatter;
+    public String getFormat(){
+        return format;
     }
 
     public Logger getLogger(){
@@ -82,7 +83,7 @@ public class NassaContext implements ApplicationContext {
     public void init(ApplicationProperties properties) throws InvalidStateException {
         this.properties = properties;
         initializationTime = LocalDateTime.now();
-        formatter = DateTimeFormatter.ofPattern(properties.getDateTimeFormat());
+        format = properties.getDateTimeFormat();
         logger = Logger.getLogger(NassaContext.class.getName());
         FileHandler handler;
         try {

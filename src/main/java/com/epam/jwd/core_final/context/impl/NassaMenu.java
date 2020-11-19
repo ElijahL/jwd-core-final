@@ -12,7 +12,9 @@ import com.epam.jwd.core_final.service.impl.SpaceshipServiceImpl;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,9 +32,12 @@ public enum NassaMenu implements ApplicationMenu {
     }
 
     public void startMenu() throws IOException{
-        System.out.println("###  Welcome to Nassa!  ###\n" +
-                        "# Please, make yourself at home. :)\n" +
-                        "# To use our services conveniently, please follow the instructions.");
+        System.out.println(
+                "# # # # #  Welcome to Nassa!  # # # # #\n" +
+                "#  Please, make yourself at home. :)  #\n" +
+                "#  To use our services conveniently,  #\n" +
+                "#  please follow the instructions.    #\n" +
+                "# # # # # # # # # # # # # # # # # # # #");
         handleUserInput();
     }
 
@@ -42,7 +47,8 @@ public enum NassaMenu implements ApplicationMenu {
                 >= NassaContext.getInstance().getRefreshRate()){
             NassaContext.getInstance().init(NassaContext.getInstance().getProperties());
         }
-        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+        System.out.println(
+                "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                 "0. Exit\n" +
                 "1. Create new mission\n" +
                 "2. Print all crew members\n" +
@@ -50,7 +56,8 @@ public enum NassaMenu implements ApplicationMenu {
                 "4. Print all missions\n" +
                 "5. Find Crew Member by Name\n" +
                 "6. Find Spaceship by Name\n" +
-                "7. Create JSON of mission and put in a file\n" +
+                "7. Print mission in JSON format\n" +
+                "   to console and file\n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
@@ -69,36 +76,32 @@ public enum NassaMenu implements ApplicationMenu {
     private void response(int request) throws IOException{
         switch (request){
             case 0:
+                System.out.println(
+                        "# # # # # # # # # # # # # # # #\n" +
+                        "# Bye!  Hope to see you soon! #\n" +
+                        "# # # # # # # # # # # # # # # #");
                 break;
-
             case 1:
                 createNewMission();
                 break;
-
             case 2:
-                printList(CrewServiceImpl.INSTANCE.findAllCrewMembers());
+                printCrewMembers();
                 break;
-
             case 3:
-                printList(SpaceshipServiceImpl.INSTANCE.findAllSpaceships());
+                printSpaceships();
                 break;
-
             case 4:
                 printList(MissionServiceImpl.INSTANCE.findAllMissions());
                 break;
-
             case 5:
                 findCrewMemberByName();
                 break;
-
             case 6:
                 findSpaceshipByName();
                 break;
-
             case 7:
                 createAndPrintJSON();
                 break;
-
             default:
                 System.out.println("It seems you made a mistake. Try one more time! Check given menu :)\n");
                 break;
@@ -111,20 +114,86 @@ public enum NassaMenu implements ApplicationMenu {
         }
     }
 
+    private void printCrewMembers(){
+        String breakLine = "+-----+------------------------------+--------------------+----------------+-----------+";
+        System.out.println(breakLine + "\n"
+                + "| id  | Name                         | Role               | Rank           | Ready     |\n"
+                + breakLine);
+        for(CrewMember crewMember: CrewServiceImpl.INSTANCE.findAllCrewMembers()){
+            System.out.format("| %-4d| %-29s| %-19s| %-15s| %-10s|\n",
+                    crewMember.getId(),
+                    crewMember.getName(),
+                    crewMember.getRole().toString(),
+                    crewMember.getRank().toString(),
+                    crewMember.getReadyForNextMissions() ? "ready" : "not ready");
+            System.out.println(breakLine);
+        }
+    }
+
+    private void printSpaceships(){
+        System.out.println(
+                  "+-----+--------------------+-------------------------+-----------------+----------+\n"
+                + "| id  | Name               | Crew                    | Flight Distance | Ready    |\n"
+                + "+-----+--------------------+-------------------------+-----------------+----------+"
+        );
+        for(Spaceship spaceship: SpaceshipServiceImpl.INSTANCE.findAllSpaceships()){
+            String firstLineFormat = "| %-4d| %-19s| %-19s: %-3d| %-16d| %-9s|\n";
+            String nextLinesFormat = "| %-4s| %-19s| %-19s: %-3d| %-16s| %-9s|\n";
+            System.out.format(firstLineFormat,
+                    spaceship.getId(),
+                    spaceship.getName(),
+                    Role.MISSION_SPECIALIST.toString(), spaceship.getCrew().get(Role.MISSION_SPECIALIST),
+                    spaceship.getFlightDistance(),
+                    spaceship.getReadyForNextMissions() ? "ready" : "not ready");
+            System.out.format(nextLinesFormat,
+                    "", "",
+                    Role.COMMANDER.toString(), spaceship.getCrew().get(Role.COMMANDER),
+                    "", "");
+            System.out.format(nextLinesFormat,
+                    "", "",
+                    Role.FLIGHT_ENGINEER.toString(), spaceship.getCrew().get(Role.COMMANDER),
+                    "", "");
+            System.out.format(nextLinesFormat,
+                    "", "",
+                    Role.PILOT.toString(), spaceship.getCrew().get(Role.COMMANDER),
+                    "", "");
+            System.out.println(
+                    "+-----+--------------------+-------------------------+-----------------+----------+");
+        }
+    }
+
+    private void printMissions(){
+        String breakLine =
+                  "+-----+--------------------+---------------------+---------------------+---------------+-------------------------+--------+";
+        System.out.println(breakLine + "\n"
+                + "| id  | Name               | Start Date          | End Date            | Distance      | Spaceship               | Result |\n"
+                + breakLine);
+        for(FlightMission mission: MissionServiceImpl.INSTANCE.findAllMissions()){
+            System.out.format("| %-4d| %-19s| %-20s| %-20s| %-14d| %-24s| %-7s",
+                    mission.getId(),
+                    mission.getName(),
+                    mission.getStartDate().toString(),
+                    mission.getEndDate().toString(),
+                    mission.getDistance(),
+                    mission.getAssignedSpaceShift().getName(),
+                    mission.getMissionResult().toString());
+        }
+    }
+
     private void createNewMission(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Name: ");
         String name = scanner.nextLine();
 
-        DateTimeFormatter formatter = NassaContext.getInstance().getFormatter();
-        System.out.println("Start Date: (Format: " + formatter.toString() + ")");
+        DateFormat format = new SimpleDateFormat(NassaContext.getInstance().getFormat());
+        System.out.println("Start Date: (Format: " + format.toString() + ")");
         String dateTime = scanner.nextLine();
-        LocalDateTime startDate = LocalDateTime.parse(dateTime, formatter);
+        LocalDateTime startDate = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(format.toString()));
 
-        System.out.println("End Date: (Format: " + formatter.toString() + ")");
+        System.out.println("End Date: (Format: " + format.toString() + ")");
         dateTime = scanner.nextLine();
-        LocalDateTime endDate = LocalDateTime.parse(dateTime, formatter);
+        LocalDateTime endDate = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(format.toString()));
 
         System.out.println("Distance: (Long)");
         Long distance = scanner.nextLong();
@@ -139,7 +208,9 @@ public enum NassaMenu implements ApplicationMenu {
 
     private CrewMember findCrewMemberByName(){
         System.out.println("Name:");
-        String name = (new Scanner(System.in)).nextLine().split("[\n]")[0];
+        String name = (new Scanner(System.in))
+                .nextLine()
+                .split("[\n]")[0];
         Optional<CrewMember> optionalCrewMember = CrewServiceImpl.INSTANCE
                 .findCrewMemberByCriteria(new CrewMemberCriteria().setName(name));
         if(optionalCrewMember.isPresent()){
@@ -153,7 +224,9 @@ public enum NassaMenu implements ApplicationMenu {
 
     private Spaceship findSpaceshipByName(){
         System.out.println("Name:");
-        String name = (new Scanner(System.in)).nextLine().split("[\n]")[0];
+        String name = (new Scanner(System.in))
+                .nextLine()
+                .split("[\n]")[0];
         Optional<Spaceship> optionalSpaceship = SpaceshipServiceImpl.INSTANCE
                 .findSpaceshipByCriteria((new SpaceshipCriteria()).setName(name));
         if(optionalSpaceship.isPresent()){
@@ -166,7 +239,7 @@ public enum NassaMenu implements ApplicationMenu {
     }
 
     private Spaceship assignSpaceship(){
-        Optional<Spaceship> optionalSpaceship =  SpaceshipServiceImpl.INSTANCE
+        Optional<Spaceship> optionalSpaceship = SpaceshipServiceImpl.INSTANCE
                 .findSpaceshipByCriteria(new SpaceshipCriteria().setIsReadyForNextMission(true));
         SpaceshipServiceImpl.INSTANCE.assignSpaceshipOnMission(optionalSpaceship.get());
         return optionalSpaceship.get();
@@ -189,6 +262,7 @@ public enum NassaMenu implements ApplicationMenu {
     private void createAndPrintJSON() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        objectMapper.setDateFormat(new SimpleDateFormat(NassaContext.getInstance().getFormat()));
         for(FlightMission flightMission: MissionServiceImpl.INSTANCE.findAllMissions()){
             objectMapper.writeValue(new File(MessageFormat
                             .format("src/main/resources/output/mission{0}.json", flightMission.getId())),
@@ -197,9 +271,5 @@ public enum NassaMenu implements ApplicationMenu {
             Logger logger = NassaContext.getInstance().getLogger();
             logger.info("Util JSON is created");
         }
-    }
-
-    private void reinitialization(){
-
     }
 }
